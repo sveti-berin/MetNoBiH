@@ -107,12 +107,12 @@
     }
 
     #date {
-        font-size: 1.3vw;
+        font-size: 1.6vw;
 
     }
 
     #time {
-        font-size: 1.2vw;
+        font-size: 1.5vw;
     }
 
     .icon_container {
@@ -301,7 +301,7 @@
     .mobile_container {
         display: grid;
         grid-template-columns: auto;
-        grid-template-rows: 800px 1000px;
+        grid-template-rows: 750px auto;
         overflow: scroll;
         gap: 5vh;
     }
@@ -322,7 +322,7 @@
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5.3px);
         -webkit-backdrop-filter: blur(5.3px);
-        overflow: scroll;
+        overflow: visible;
 
     }
 
@@ -384,12 +384,12 @@
 
     }
 
-    #date {
+    #mobile_date {
         font-size: 4vw;
 
     }
 
-    #time {
+    #mobile_time {
         font-size: 3.5vw;
     }
 
