@@ -1,13 +1,14 @@
 // Displaying the current date in the format: 25 Dec 2024
 const now = new Date();
 const dateOptions = { day: "2-digit", month: "short", year: "numeric" };
-document.getElementById("date").innerHTML = now.toLocaleDateString(undefined, dateOptions);
-document.getElementById("mobile_date").innerHTML = now.toLocaleDateString(undefined, dateOptions);
+// Explicitly specify the locale for proper formatting, e.g., "en-GB" for day-month-year format
+document.getElementById("date").innerHTML = now.toLocaleDateString("en-GB", dateOptions);
+document.getElementById("mobile_date").innerHTML = now.toLocaleDateString("en-GB", dateOptions);
 
-// Displaying the current time in the format: 03:45 PM
-const timeOptions = { hour: "2-digit", month: "short", minute: "2-digit", hour12: false };
-document.getElementById("time").innerHTML = now.toLocaleTimeString(undefined, timeOptions);
-document.getElementById("mobile_time").innerHTML = now.toLocaleTimeString(undefined, timeOptions);
+// Displaying the current time in the format: 03:45 PM (24-hour format)
+const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: false };  // Set hour12 to false for 24-hour format
+document.getElementById("time").innerHTML = now.toLocaleTimeString("en-GB", timeOptions);
+document.getElementById("mobile_time").innerHTML = now.toLocaleTimeString("en-GB", timeOptions);
 
 //Refresh the page on submit 
 document.addEventListener("DOMContentLoaded", () => {
