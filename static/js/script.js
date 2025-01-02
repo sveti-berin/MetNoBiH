@@ -5,7 +5,7 @@ document.getElementById("date").innerHTML = now.toLocaleDateString(undefined, da
 document.getElementById("mobile_date").innerHTML = now.toLocaleDateString(undefined, dateOptions);
 
 // Displaying the current time in the format: 03:45 PM
-const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: false };
+const timeOptions = { hour: "2-digit", month: "short", minute: "2-digit", hour12: false };
 document.getElementById("time").innerHTML = now.toLocaleTimeString(undefined, timeOptions);
 document.getElementById("mobile_time").innerHTML = now.toLocaleTimeString(undefined, timeOptions);
 
