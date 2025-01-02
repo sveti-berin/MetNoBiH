@@ -6,7 +6,7 @@ import secrets
 
 from flask import Flask, request, redirect, url_for, render_template, session
 from retry_requests import retry # type: ignore
-from datetime import datetime, timedelta
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(24)
