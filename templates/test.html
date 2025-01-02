@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetNoBiH.ba</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_style.css') }}">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.svg">
+    <!-- Google Fonts Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- This part is for the desktop and tablet view -->
+
+    <div class="container background_overlay">
+
+        <div class="main_content">
+
+            <div class="logo_container">
+                <img class="logo" src="static/img/logo.svg">
+            </div>
+
+            <div class="divider">
+
+            </div>
+
+            <div class="info_panel_container">
+
+                <div class="temperature_container">
+                    <h1 class="temperature">{{current_temp}} °C</h1>
+                    <!--<h5 id="apparent">Apparent temperature: {{apparent}}</h5>-->
+                </div>
+                <div class="location_container">
+                    <h1 class="location" id="location">{{town_name}} </h1>
+                    <h5 id="date">Date</h5>
+                    <h6 id="time">Time</h6>
+                </div>
+                <div class="icon_container">
+                    <img class="weather_icon" alt="Weather Icon"
+                        src=" {{ url_for('static', filename='img/weather/{}.svg'.format(img)) }}">
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="sidebar">
+            <div class="form_container">
+                <form class="input_form_town" id="town_name_input" action="/" method="post">
+
+                    <div class="form_town_name_container">
+                        <input type="text" id="town_name" name="town_name" placeholder="Input town name!">
+                    </div>
+                    <div class="form_image_container">
+                        <input id="button" type="image" name="submit" alt="submit" src="static/img/search.png">
+                    </div>
+
+                </form>
+            </div>
+            <div class="data_container">
+
+                <h2 class="weather_info">Weather: {{current_weather}}</h2>
+
+                <div class="main_weather_info_container">
+
+                    <div class="weather_info_container">
+                        <h4 class="item1">Apparent temp</h4>
+                        <h4 class="item2">{{apparent}} °C</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/thermometer-glass.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Temp max</h4>
+                        <h4 class="item2">{{max_temp}} °C</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/thermometer.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Temp min</h4>
+                        <h4 class="item2">{{min_temp}} °C</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/thermometer_cold.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Humidity</h4>
+                        <h4 class="item2">{{humidity}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/humidity.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Cloud Cover</h4>
+                        <h4 class="item2">{{current_cloud_cover}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/cloudy.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Wind</h4>
+                        <h4 class="item2">{{wind_speed}} km/h</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/wind.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Fog (up to 3km)</h4>
+                        <h4 class="item2">{{current_fog}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/45.svg" alt="icon">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <hr>
+
+
+                <div class="main_weather_info_container">
+
+                    <h2 class="daily_weather_info">Weather during the day</h2>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img1)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour1['date']}}</p>
+                            <p>{{weather1}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour1['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img2)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour2['date']}}</p>
+                            <p>{{weather2}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour2['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img3)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour3['date']}}</p>
+                            <p>{{weather3}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour3['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img4)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour4['date']}}</p>
+                            <p>{{weather4}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour4['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img5)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour5['date']}}</p>
+                            <p>{{weather5}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour5['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img6)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour6['date']}}</p>
+                            <p>{{weather6}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour6['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="{{ url_for('static', filename='img/weather/{}.svg'.format(img7)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour7['date']}}</p>
+                            <p>{{weather7}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour7['temperature_2m']}} °C</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- This part is used in cases where the screen is between 768px and lower -->
+
+    <div class="mobile_container background_overlay">
+
+        <div class="main_content">
+
+            <div class="logo_container">
+                <img class="logo" src="/static/img/logo.svg">
+            </div>
+
+
+            <div class="info_panel_container">
+
+                <div class="temperature_container">
+                    <h1 class="temperature">{{current_temp}} °C</h1>
+                </div>
+
+                <div class="location_container">
+                    <h1 class="location" id="mobile_location">Sarajevo</h1>
+                    <h5 id="mobile_date">Date</h5>
+                    <h6 id="mobile_time">Time</h6>
+                </div>
+
+                <div class="icon_container">
+                    <img class="weather_icon" src="/static/img/weather/clear-day.svg">
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="sidebar">
+            <div class="form_container">
+                <form class="input_form_town" action="">
+                    <div class="form_town_name_container">
+                        <input type="text" id="town_name" name="town_name" placeholder="Input town name!">
+                    </div>
+                    <div class="form_image_container">
+                        <input id="button" type="image" name="submit" alt="submit" src="static/img/search.png">
+                    </div>
+                </form>
+            </div>
+            <div class="data_container">
+
+                <h2 class="weather_info">Thunderstorms with light drizzle</h2>
+
+                <div class="main_weather_info_container">
+
+                    <div class="weather_info_container">
+                        <h4 class="item1">Temp max</h4>
+                        <h4 class="item2">{{max_temp}} °C</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/thermometer.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Temp min</h4>
+                        <h4 class="item2">{{min_temp}} °C</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/thermometer_cold.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Humidity</h4>
+                        <h4 class="item2">{{humidity}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/humidity.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Cloudy</h4>
+                        <h4 class="item2">{{cloud_cover}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/cloudy.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Wind</h4>
+                        <h4 class="item2">{{wind_speed}} km/h</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/wind.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Fog (up to 3km)</h4>
+                        <h4 class="item2">{{current_fog}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/wind.svg" alt="icon">
+                        </div>
+                    </div>
+                    <div class="weather_info_container">
+                        <h4 class="item1">Fog (up to 3km)</h4>
+                        <h4 class="item2">{{current_fog}} %</h4>
+                        <div class="item3">
+                            <img src="static/img/weather/45.svg" alt="icon">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <hr>
+
+
+                <div class="main_weather_info_container">
+
+                    <h2 class="daily_weather_info">Weather during the day</h2>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="static/img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour1['date']}}</p>
+                            <p>{{hour1['weather_code']}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour1['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="static/img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour2['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour2['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="static/img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour3['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour3['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour4['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour4['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour5['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour5['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour6['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour6['temperature_2m']}} °C</h4>
+                    </div>
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class="" src="img/search.png" alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{hour7['date']}}</p>
+                            <p>Weather</p>
+                        </div>
+                        <h4 class="daily_item3">{{hour7['temperature_2m']}} °C</h4>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- This part is used for Javascript-->
+    <script src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+</body>
+
+</html>

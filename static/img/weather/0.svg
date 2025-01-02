@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#F4D500;stroke-width:3;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<path class="st0" d="M42.5,32c0,5.8-4.7,10.5-10.5,10.5S21.5,37.8,21.5,32S26.2,21.5,32,21.5l0,0C37.8,21.5,42.5,26.2,42.5,32z
+		 M32,15.7V9.5 M32,54.5v-6.2 M43.5,20.5l4.4-4.4 M16.1,47.9l4.4-4.4 M20.5,20.5l-4.4-4.4 M47.9,47.9l-4.4-4.4 M15.7,32H9.5
+		 M54.5,32h-6.2"/>
+	
+		<animateTransform  accumulate="none" additive="replace" attributeName="transform" calcMode="linear" dur="45s" fill="remove" from="0 32 32" repeatCount="indefinite" restart="always" to="360 32 32" type="rotate">
+		</animateTransform>
+</g>
+</svg>

@@ -1,0 +1,265 @@
+/* Define the margin and padding to 0, the HTML imported font */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    color: aliceblue;
+
+}
+
+
+*>img {
+    pointer-events: none;
+}
+
+
+
+/*The background image and linear gradient*/
+body {
+    /*background-image: url('/static/img/overcast.jpg');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-attachment: fixed;
+    /*background-position: center;*/
+
+}
+
+.background_overlay {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+}
+
+
+/*Content of the website*/
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+    grid-template-rows: 100% 100%;
+}
+
+.main_content {
+
+    overflow: hidden;
+    align-content: space-between;
+}
+
+.sidebar {
+    background: rgba(44, 43, 43, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.3px);
+    -webkit-backdrop-filter: blur(5.3px);
+    overflow: scroll;
+
+}
+
+/*Main Content individual parts*/
+
+.logo_container {
+    margin: 7% 0% 0% 7%;
+    display: inline-block;
+    width: 30%;
+
+}
+
+.logo {
+    width: 100%;
+}
+
+.info_panel_container {
+    clear: both;
+    align-content: center;
+    margin: 7% 0% 0% 7%;
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr;
+    gap: 3%;
+
+}
+
+.temperature_container {
+    align-content: center;
+    vertical-align: middle;
+    border-right: solid 2px white;
+
+}
+
+.temperature {
+    text-align: center;
+    font-size: 4.5vw;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+}
+
+.location_container {
+    text-align: left;
+    align-content: center;
+    text-wrap: nowrap;
+
+}
+
+.location {
+    font-size: 4vw;
+}
+
+#date {
+    font-size: 1.3vw;
+
+}
+
+#time {
+    font-size: 1.2vw;
+}
+
+.icon_container {
+    align-content: center;
+}
+
+.weather_icon {
+    width: 60%;
+
+}
+
+.divider {
+    height: 42.5%;
+}
+
+
+/*Elements of the sidebar*/
+/*Form for city input*/
+
+.form_container {
+    margin: 5% 5% 5% 7%;
+    height: 8vh;
+    border-bottom: solid 1px white;
+    align-items: center;
+}
+
+.input_form_town {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.form_town_name_container {
+    flex: 2;
+    width: 10vw;
+}
+
+#town_name {
+    color: white;
+    background-color: rgba(103, 34, 34, 0);
+    border: none;
+    transition: border-bottom 50ms ease-in-out, background-color 200ms ease-in-out;
+    font-size: 100%;
+    padding: 5% 0% 5% 5%;
+    width: 100%;
+}
+
+.form_image_container {
+    flex: 1.5;
+}
+
+#button {
+    padding-left: 1.5vw;
+    width: 2vw;
+}
+
+/*Animation to play on hover and focus on the search bar*/
+#town_name:focus {
+    background-color: rgba(131, 131, 131, 0);
+    border: none;
+    outline: none;
+    color: white;
+    background-color: rgba(23, 61, 61, 0.147);
+
+}
+
+#town_name:hover {
+    color: white;
+    background-color: rgba(183, 183, 183, 0.147);
+
+}
+
+
+
+
+/*Weather data*/
+
+.data_container {
+
+    margin: 5% 5% 5% 7%;
+
+}
+
+.main_weather_info_container {
+    padding: 1vh 10vh 0vh 0vh;
+    margin: 2vh 0vh 2vh 0vh;
+}
+
+.weather_info_container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 3vh;
+    align-items: center;
+    gap: 1vw;
+    padding: 1.5vh;
+    font-size: 18px;
+}
+
+.item1 {
+    flex: 2;
+}
+
+.item2 {
+    flex: 1;
+    text-align: end;
+    text-wrap: none;
+}
+
+.item3 {
+    width: 2.2vw;
+
+}
+
+.item3>img {
+    width: 100%;
+}
+
+/*Weather during the day */
+
+.daily_weather_info_container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 3vh;
+    align-items: center;
+    gap: 1vw;
+    padding: 1.5vh 1.5vh 1.5vh 1.5vh;
+}
+
+.daily_item1 {
+    flex: 1.5;
+    width: 1%;
+}
+
+.daily_item2 {
+    flex: 2;
+}
+
+.daily_item3 {
+    flex: 1;
+}
+
+.daily_item1>img {
+    width: 40%;
+}
+
+.daily_weather_info {
+    margin-bottom: 4vh;
+}
