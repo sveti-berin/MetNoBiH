@@ -71,7 +71,7 @@ def fetch_geolocation(city_name):
     GEOCODING_API = "https://geocoding-api.open-meteo.com/v1/search"
     params = {"name": city_name, "count": 1, "language": "en", "format": "json"}
     response = requests.get(GEOCODING_API, params=params)
-    print(f"Geolocation Response: {response.json()}")  # Debugging line to check the full response
+    #print(f"Geolocation Response: {response.json()}")  # Debugging line to check the full response
     if response.status_code == 200:
         data = response.json()
         if "results" in data and len(data["results"]) > 0:
@@ -96,7 +96,7 @@ def update_params_with_city(city_name):
     params["longitude"] = longitude if longitude is not None else DEFAULT_LONGITUDE
     responses = openmeteo.weather_api(url, params=params)
     response = responses[0]
-    print(f"Updated Params: {params}")  # Log the updated parameters
+    #print(f"Updated Params: {params}")  # Log the updated parameters
     return params,response
 
 def fetch_weather_data():
@@ -116,6 +116,7 @@ def process_current_data(response):
     current_wind_speed_10m = current.Variables(5).Value()
     current_weather = weather_codes.get(current_weather_code, "Unknown weather")
     weather_code_img = f"{int(current_weather_code)}"
+    
     return {
         "current_temp": int(current_temperature_2m),
         "humidity" : int(current_relative_humidity_2m),
@@ -153,7 +154,7 @@ def process_hourly_data(response):
     hour6 = hourly_dataframe.iloc[current_time + 7]
     hour7 = hourly_dataframe.iloc[current_time + 8]
     fog = hourly_cloud_cover_low[current_time+2]
-    print(hourly_cloud_cover_low)
+    #print(hourly_cloud_cover_low)
     hourly_data = {
         "hour1" : hourly_dataframe.iloc[current_time + 2],
         "hour2" : hourly_dataframe.iloc[current_time + 3],
@@ -182,11 +183,14 @@ def process_hourly_data(response):
     
     return hourly_data
 
+
+
 def process_daily_data(response):
     """Process daily weather data."""
     current_day_of_week = datetime.now().weekday()
     #print(current_day_of_week)
     daily = response.Daily()
+
     daily_temperature_2m_max = daily.Variables(0).ValuesAsNumpy()
     daily_temperature_2m_min = daily.Variables(1).ValuesAsNumpy()
 
@@ -196,13 +200,15 @@ def process_daily_data(response):
 	    freq = pd.Timedelta(seconds = daily.Interval()),
 	    inclusive = "left"
     )}
+   
     daily_data["temperature_2m_max"] = daily_temperature_2m_max
     daily_data["temperature_2m_min"] = daily_temperature_2m_min
     
-    #print(daily_data["temperature_2m_max"])
     return {
+        
         "max_temp" : round(daily_temperature_2m_max[current_day_of_week],1),
-        "min_temp" : round(daily_temperature_2m_min[current_day_of_week],1)
+        "min_temp" : round(daily_temperature_2m_min[current_day_of_week],1),
+
             }
 
 
