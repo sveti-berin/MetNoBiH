@@ -2,5 +2,5 @@ Flask==2.2.2
 requests==2.28.1
 requests_cache==0.8.1
 pandas==1.5.2
-retry-requests==0.2.0
+retry-requests==1.0.0  # or 2.0.0
 openmeteo_requests==0.1.0 
