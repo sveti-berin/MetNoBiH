@@ -146,23 +146,25 @@ def process_hourly_data(response):
     hourly_data["weather_code"] = hourly_weather_code
     hourly_data["cloud_cover_low"] = hourly_cloud_cover_low
     hourly_dataframe = pd.DataFrame(data = hourly_data)
-    hour1 = hourly_dataframe.iloc[current_time + 2]
+    hour1 = hourly_dataframe.iloc[current_time + 1]
     hour2 = hourly_dataframe.iloc[current_time + 3]
     hour3 = hourly_dataframe.iloc[current_time + 4]
     hour4 = hourly_dataframe.iloc[current_time + 5]
     hour5 = hourly_dataframe.iloc[current_time + 6]
     hour6 = hourly_dataframe.iloc[current_time + 7]
     hour7 = hourly_dataframe.iloc[current_time + 8]
-    fog = hourly_cloud_cover_low[current_time+2]
+    fog = hourly_cloud_cover_low[current_time + 1]
+    #print(hour1['date'])
+    #print(hour1['cloud_cover_low'])
     #print(hourly_cloud_cover_low)
     hourly_data = {
-        "hour1" : hourly_dataframe.iloc[current_time + 2],
-        "hour2" : hourly_dataframe.iloc[current_time + 3],
-        "hour3" : hourly_dataframe.iloc[current_time + 4],
-        "hour4" : hourly_dataframe.iloc[current_time + 5],
-        "hour5" : hourly_dataframe.iloc[current_time + 6],
-		"hour6" : hourly_dataframe.iloc[current_time + 7],
-        "hour7" : hourly_dataframe.iloc[current_time + 8],
+        "hour1" : hour1,
+        "hour2" : hour2,
+        "hour3" : hour3,
+        "hour4" : hour4,
+        "hour5" : hour5,
+		"hour6" : hour6,
+        "hour7" : hour7,
         "current_fog" : int(fog),
         "weather1" : weather_codes.get(hour1['weather_code'], "Unkown weather"),
         "weather2" : weather_codes.get(hour2['weather_code'], "Unkown weather"),
@@ -171,7 +173,7 @@ def process_hourly_data(response):
     	"weather5" : weather_codes.get(hour5['weather_code'], "Unkown weather"),
         "weather6" : weather_codes.get(hour6['weather_code'], "Unkown weather"),
         "weather7" : weather_codes.get(hour7['weather_code'], "Unkown weather"),
-        "time" : current_time,
+        #"time" : current_time,
         "img1" : f"{int(hourly_weather_code[current_time + 2])}",
         "img2" : f"{int(hourly_weather_code[current_time + 3])}",
         "img3" : f"{int(hourly_weather_code[current_time + 4])}",
