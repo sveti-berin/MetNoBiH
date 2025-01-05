@@ -146,7 +146,7 @@ def process_hourly_data(response):
     hourly_data["weather_code"] = hourly_weather_code
     hourly_data["cloud_cover_low"] = hourly_cloud_cover_low
     hourly_dataframe = pd.DataFrame(data = hourly_data)
-    hour1 = hourly_dataframe.iloc[current_time + 1]
+    hour1 = hourly_dataframe.iloc[current_time + 2]
     hour2 = hourly_dataframe.iloc[current_time + 3]
     hour3 = hourly_dataframe.iloc[current_time + 4]
     hour4 = hourly_dataframe.iloc[current_time + 5]
