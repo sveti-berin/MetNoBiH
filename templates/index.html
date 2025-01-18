@@ -36,12 +36,11 @@
             <div class="divider">
 
             </div>
-
+            <!--Main prt of the page which showcases the town name, current temo, date and time-->
             <div class="info_panel_container">
 
                 <div class="temperature_container">
                     <h1 class="temperature">{{current_temp}} °C</h1>
-                    <!--<h5 id="apparent">Apparent temperature: {{apparent}}</h5>-->
                 </div>
                 <div class="location_container">
                     <h1 class="location" id="location">{{town_name}}</h1>
@@ -75,7 +74,7 @@
             <div class="data_container">
 
                 <h2 class="weather_info">{{current_weather}}</h2>
-
+                <!-- This part contains all the current day forecast info-->
                 <div class="main_weather_info_container">
 
                     <div class="weather_info_container">
@@ -133,7 +132,76 @@
 
                 <hr>
 
+                <!--This part contains all the daily forecast info-->
+                <div class="main_weather_info_container">
 
+                    <h2 class="daily_weather_info">Weekly forecast</h2>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img1_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img2_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather1}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow1}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img3_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather2}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow2}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img4_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather3}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow3}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img5_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather4}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow4}}</h4>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!--This part contains all the current day hourly data info-->
                 <div class="main_weather_info_container">
 
                     <h2 class="daily_weather_info">Weather during the day</h2>
@@ -233,7 +301,7 @@
                 <img class="logo" src="/static/img/logo.svg">
             </div>
 
-
+            <!--Main prt of the page which showcases the town name, current temo, date and time-->
             <div class="info_panel_container">
 
                 <div class="temperature_container">
@@ -269,7 +337,7 @@
                 </form>
             </div>
             <div class="data_container">
-
+                <!--Contains all the current day info-->
                 <h2 class="weather_info">{{current_weather}}</h2>
 
                 <div class="main_weather_info_container">
@@ -326,10 +394,75 @@
 
 
                 </div>
-
+                <!--Contains all the weekly forecast info-->
                 <hr>
+                <div class="main_weather_info_container">
 
+                    <h2 class="daily_weather_info">Weekly forecast</h2>
 
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img1_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img2_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather1}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow1}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img3_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather2}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow2}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img4_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather3}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow3}}</h4>
+                    </div>
+
+                    <div class="daily_weather_info_container">
+                        <div class="daily_item1">
+                            <img class=""
+                                src="{{ url_for('static', filename='img/weather/{}.svg'.format(img5_tomorrow)) }}"
+                                alt="icon">
+                        </div>
+                        <div class="daily_item2">
+                            <p>{{tomorrow_weather4}}</p>
+                        </div>
+                        <h4 class="daily_item3">{{day_tomorrow4}}</h4>
+                    </div>
+
+                </div>
+                <!--Contains all the current day hourly data info-->
+                <hr>
                 <div class="main_weather_info_container">
 
                     <h2 class="daily_weather_info">Weather during the day</h2>

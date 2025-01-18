@@ -26,7 +26,7 @@ params = {
     "longitude": None,  # Placeholder for dynamic longitude
     "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "cloud_cover", "wind_speed_10m"],
     "hourly": ["temperature_2m", "weather_code", "cloud_cover_low"],
-    "daily": ["temperature_2m_max", "temperature_2m_min"],
+    "daily": ["temperature_2m_max", "temperature_2m_min", "weather_code"],
     "timezone": "auto"
 }
 
@@ -185,16 +185,26 @@ def process_hourly_data(response):
     
     return hourly_data
 
-
+def get_day_names():
+    today = datetime.now()
+    day_names = [(today + timedelta(days=i)).strftime('%A') for i in range(7)]
+    print(day_names)
+    return{
+        "day_tomorrow" : day_names[1],
+        "day_tomorrow1" : day_names[2],
+        "day_tomorrow2" : day_names[3],
+        "day_tomorrow3" : day_names[4],
+        "day_tomorrow4" : day_names[5],
+    }
+    
 
 def process_daily_data(response):
     """Process daily weather data."""
-    current_day_of_week = datetime.now().weekday()
-    #print(current_day_of_week)
-    daily = response.Daily()
 
+    daily = response.Daily()
     daily_temperature_2m_max = daily.Variables(0).ValuesAsNumpy()
     daily_temperature_2m_min = daily.Variables(1).ValuesAsNumpy()
+    daily_weather_code = daily.Variables(2).ValuesAsNumpy()
 
     daily_data = {"date": pd.date_range(
 	    start = pd.to_datetime(daily.Time(), unit = "s", utc = True),
@@ -202,16 +212,31 @@ def process_daily_data(response):
 	    freq = pd.Timedelta(seconds = daily.Interval()),
 	    inclusive = "left"
     )}
-   
+
     daily_data["temperature_2m_max"] = daily_temperature_2m_max
     daily_data["temperature_2m_min"] = daily_temperature_2m_min
-    
-    return {
-        
-        "max_temp" : round(daily_temperature_2m_max[current_day_of_week],1),
-        "min_temp" : round(daily_temperature_2m_min[current_day_of_week],1),
+    daily_data["weather_code"] = daily_weather_code
 
-            }
+    daily_dataframe = pd.DataFrame(data = daily_data)
+    print(daily_dataframe)
+    #print(daily_weather_code)
+    
+    #print(daily_temperature_2m_max)
+    return {
+        "tomorrow_weather" : weather_codes.get(daily_weather_code[2], "Unknown weather"),
+        "tomorrow_weather1" : weather_codes.get(daily_weather_code[3], "Unknown weather"),
+        "tomorrow_weather2" : weather_codes.get(daily_weather_code[4], "Unknown weather"),
+        "tomorrow_weather3" : weather_codes.get(daily_weather_code[5], "Unknown weather"),
+        "tomorrow_weather4" : weather_codes.get(daily_weather_code[6], "Unknown weather"),
+        "img1_tomorrow" : int(daily_weather_code[2]),
+        "img2_tomorrow" : int(daily_weather_code[3]),
+        "img3_tomorrow" : int(daily_weather_code[4]),
+        "img4_tomorrow" : int(daily_weather_code[5]),
+        "img5_tomorrow" : int(daily_weather_code[6]),
+        "max_temp" : int(daily_temperature_2m_max[1]),
+        "min_temp" : int(daily_temperature_2m_min[1]),
+        
+    }
 
 
 
@@ -244,12 +269,13 @@ def home():
     weather_data = process_current_data(response)
     hourly_data = process_hourly_data(response)
     daily_data = process_daily_data(response)
-   
+    day_names = get_day_names()
     return render_template(
         "index.html",
         **weather_data,
         **hourly_data,
         **daily_data,
+        **day_names,
         town_name=city_name,
         
     )
