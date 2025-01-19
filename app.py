@@ -276,7 +276,7 @@ def home():
         **hourly_data,
         **daily_data,
         **day_names,
-        town_name=city_name,
+        town_name=city_name.capitalize(),
         
     )
 
