@@ -11,6 +11,8 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(24)
 
+#BOILER PLATE OPEN METEO API CODE ___START____
+
 # Setup the Open-Meteo API client with cache and retry on error
 cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
 retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
@@ -30,10 +32,14 @@ params = {
     "timezone": "auto"
 }
 
+#BOILER PLATE OPEN METEO API CODE ___END____
+
 
 # Default coordinates
 DEFAULT_LATITUDE = 43.82939
 DEFAULT_LONGITUDE = 18.30003
+
+#Weather codes are used to dynamically change all of the icons on the website depending on the current/daily/hourly weather
 
 weather_codes = {
     0: "Clear sky", 
@@ -66,6 +72,8 @@ weather_codes = {
     99: "Thunderstorm with hail"
 }
 
+#Returns the latitude and longitude to the main flask function to be used in fetching the data in the BOILER PLATE CODE
+
 def fetch_geolocation(city_name):
     #Fetches latitude and longitude for a given city name.
     GEOCODING_API = "https://geocoding-api.open-meteo.com/v1/search"
@@ -86,6 +94,8 @@ def fetch_geolocation(city_name):
         
         return None, None
 
+#Updates the params in the BOILER PLATE CODE section to the match the geo location fetched latitude and longitude
+
 def update_params_with_city(city_name):
     """Updates params with geolocation based on the city name."""
     global params  # Use the global params variable
@@ -99,11 +109,15 @@ def update_params_with_city(city_name):
     #print(f"Updated Params: {params}")  # Log the updated parameters
     return params,response
 
+#Fetches the weather data based upon the updated parameters
+
 def fetch_weather_data():
     """Fetch weather data dynamically based on updated params."""
     responses = openmeteo.weather_api(url, params=params)
     response = responses[0]  # Assuming single location
     return response
+
+#Processes the current weather data and returns it to be displayed in HTML
 
 def process_current_data(response):
     """Process current weather data."""
@@ -126,6 +140,8 @@ def process_current_data(response):
         "apparent" : int(current_apparent_temperature),
         "img" : weather_code_img,
     }
+
+#Processes the hourly weather data returns it to be displayed in HTML
 
 def process_hourly_data(response):
     """Process hourly weather data."""
@@ -185,6 +201,9 @@ def process_hourly_data(response):
     
     return hourly_data
 
+
+#Processes weekly names to be displyed dynamically in HTML depending on the upcoming days. It is displayed in the Weekly forecast section. 
+
 def get_day_names():
     today = datetime.now()
     day_names = [(today + timedelta(days=i)).strftime('%A') for i in range(7)]
@@ -197,6 +216,8 @@ def get_day_names():
         "day_tomorrow4" : day_names[5],
     }
     
+
+#processes the daily weather data and returns it to be displayed in HTML. 
 
 def process_daily_data(response):
     """Process daily weather data."""
@@ -238,7 +259,7 @@ def process_daily_data(response):
         
     }
 
-
+#Main Flask code that engages on first load and after that every time when somebody enters a town name
 
 @app.route('/', methods=["GET", "POST"])
 def home():

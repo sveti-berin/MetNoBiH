@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MetNoBiH.ba</title>
+
+    <!-- This part links the CSS files to HTML, they are called upon with using the Flask syntax  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_style.css') }}">
+
+    <!-- This part links the fav icon to be displayed on the tab bar in browsers  -->
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.svg">
-    <!-- Google Fonts Raleway -->
+
+    <!-- Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -36,7 +41,7 @@
             <div class="divider">
 
             </div>
-            <!--Main prt of the page which showcases the town name, current temo, date and time-->
+            <!--Main part of the page which showcases the town name, current temo, date and time-->
             <div class="info_panel_container">
 
                 <div class="temperature_container">
@@ -58,6 +63,7 @@
 
         </div>
 
+        <!-- This is the sidebar part of the website which showcases all the weather forecast data -->
         <div class="sidebar">
             <div class="form_container">
                 <form class="input_form_town" id="town_name_input" action="/" method="post">
@@ -553,7 +559,7 @@
     </div>
 
 
-    <!-- This part is used for Javascript-->
+    <!-- This part is used to link Javascript-->
     <script src="{{ url_for('static', filename='js/script.js') }}" defer>
     </script>
 

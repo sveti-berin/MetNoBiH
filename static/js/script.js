@@ -82,6 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         //console.log("Background updated to:", backgroundImage); // Debugging log
     }
 
-    // Delay the background update for dynamic rendering
+    // Delay the background update
     setTimeout(updateBackground, 100); // Adjust timing if necessary
 });
