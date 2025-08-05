@@ -4,11 +4,11 @@ import requests_cache
 import pandas as pd
 import secrets
 
-from flask import Flask, request, redirect, url_for, render_template, session
+from flask import Flask, request, render_template
 from retry_requests import retry # type: ignore
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../static', template_folder='../templates')
 app.secret_key = secrets.token_hex(24)
 
 #BOILER PLATE OPEN METEO API CODE ___START____
